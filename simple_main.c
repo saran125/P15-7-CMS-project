@@ -30,6 +30,9 @@ void saveToFile();
 void loadFromFile();
 void clearInputBuffer();
 int getNextId();
+void sortStudentsById();
+void sortStudentsByMark();
+void displayStudentsSorted(int sortBy); // 1 for ID, 2 for Mark
 
 int main() {
     // Display declaration
@@ -229,6 +232,38 @@ void viewAllStudents() {
     }
     
     printf("\nTotal students: %d\n", activeCount);
+    
+    // Show sorting options
+    int choice;
+    while (1) {
+        printf("\n--- SORTING OPTIONS ---\n");
+        printf("1. SHOW ALL SORT BY ID\n");
+        printf("2. SHOW ALL SORT BY MARK\n");
+        printf("3. Back to Main Menu\n");
+        printf("Enter your choice: ");
+        
+        if (scanf("%d", &choice) != 1) {
+            clearInputBuffer();
+            printf("\nInvalid input! Please enter a number.\n");
+            continue;
+        }
+        clearInputBuffer();
+        
+        switch (choice) {
+            case 1:
+                displayStudentsSorted(1); // Sort by ID
+                break;
+            case 2:
+                displayStudentsSorted(2); // Sort by Mark
+                break;
+            case 3:
+                return; // Back to main menu
+            default:
+                printf("\nInvalid choice! Please try again.\n");
+                continue;
+        }
+        break; // Exit the loop after displaying sorted data
+    }
 }
 
 void searchStudent() {
@@ -375,4 +410,62 @@ void clearInputBuffer() {
 int getNextId() {
     // Simple implementation - you would normally check existing IDs
     return 2300000 + studentCount + 1;
+}
+
+void displayStudentsSorted(int sortBy) {
+    // Create a copy of students array for sorting
+    Student tempStudents[MAX_STUDENTS];
+    int activeCount = 0;
+    
+    // Copy active students to temp array
+    for (int i = 0; i < studentCount; i++) {
+        if (students[i].active) {
+            tempStudents[activeCount] = students[i];
+            activeCount++;
+        }
+    }
+    
+    // Sort the temp array based on choice
+    if (sortBy == 1) {
+        // Sort by ID (ascending)
+        for (int i = 0; i < activeCount - 1; i++) {
+            for (int j = i + 1; j < activeCount; j++) {
+                if (tempStudents[i].id > tempStudents[j].id) {
+                    Student temp = tempStudents[i];
+                    tempStudents[i] = tempStudents[j];
+                    tempStudents[j] = temp;
+                }
+            }
+        }
+        printf("\n--- ALL STUDENTS SORTED BY ID ---\n");
+    } else if (sortBy == 2) {
+        // Sort by Mark (descending - highest first)
+        for (int i = 0; i < activeCount - 1; i++) {
+            for (int j = i + 1; j < activeCount; j++) {
+                if (tempStudents[i].mark < tempStudents[j].mark) {
+                    Student temp = tempStudents[i];
+                    tempStudents[i] = tempStudents[j];
+                    tempStudents[j] = temp;
+                }
+            }
+        }
+        printf("\n--- ALL STUDENTS SORTED BY MARK ---\n");
+    }
+    
+    // Display sorted students
+    printf("Database Name: P15-7-CMS\n");
+    printf("Authors: P15-7(Farid, Lucas, Linus, Jazton, Saran)\n");
+    printf("Table Name: StudentRecords\n");
+    printf("%-8s %-20s %-25s %-8s\n", "ID", "Name", "Programme", "Mark");
+    printf("---------------------------------------------------------------\n");
+    
+    for (int i = 0; i < activeCount; i++) {
+        printf("%-8d %-20s %-25s %-8.1f\n", 
+               tempStudents[i].id, 
+               tempStudents[i].name, 
+               tempStudents[i].programme, 
+               tempStudents[i].mark);
+    }
+    
+    printf("\nTotal students: %d\n", activeCount);
 }
