@@ -123,18 +123,18 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="commands.c" />
-    <ClCompile Include="database.c" />
-    <ClCompile Include="main.c" />
-    <ClCompile Include="sorting.c" />
-    <ClCompile Include="utils.c" />
+    <ClCompile Include="src\commands.c" />
+    <ClCompile Include="src\database.c" />
+    <ClCompile Include="src\main.c" />
+    <ClCompile Include="src\sorting.c" />
+    <ClCompile Include="src\utils.c" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="commands.h" />
-    <ClInclude Include="database.h" />
-    <ClInclude Include="sorting.h" />
-    <ClInclude Include="student.h" />
-    <ClInclude Include="utils.h" />
+    <ClInclude Include="include\commands.h" />
+    <ClInclude Include="include\database.h" />
+    <ClInclude Include="include\sorting.h" />
+    <ClInclude Include="include\student.h" />
+    <ClInclude Include="include\utils.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
