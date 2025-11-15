@@ -1,3 +1,8 @@
-/main.c
-/main.exe
-/storage.c
+Debug/
+Release/
+x64/
+.vs/
+*.exe
+*.obj
+*.pdb
+*.log
