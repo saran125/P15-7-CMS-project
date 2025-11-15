@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <string.h>
-#include "student.h"
-#include "sorting.h"
+#include "../include/student.h"
+#include "../include/sorting.h"
 
 void displayStudentsSorted(int sortBy) {
     Student temp[MAX_STUDENTS];

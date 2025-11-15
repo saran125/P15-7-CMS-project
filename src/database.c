@@ -1,9 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "student.h"
-#include "utils.h"
-#include "database.h"
+#include "../include/student.h"
+#include "../include/utils.h"
+#include "../include/database.h"
 
 #define FILENAME "P15_7_CMS.txt"
 

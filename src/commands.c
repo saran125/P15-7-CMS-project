@@ -1,10 +1,10 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "student.h"
-#include "utils.h"
-#include "commands.h"
-
+#include "../include/student.h" 
+#include "../include/utils.h"
+#include "../include/commands.h"
+#include "../include/sorting.h" // Add this if not already included
 #define FILENAME "P15_7_CMS.txt"
 
 void addStudent() {
@@ -101,4 +101,37 @@ void updateStudent() {
 void deleteStudent() {
     printf("\n--- DELETE STUDENT ---\n");
     printf("Please edit the file manually.\n");
+}
+
+void sortingMenu() {
+    int choice;
+    while (1) {
+        printf("\n--- SORTING OPTIONS ---\n");
+        printf("1. SHOW ALL SORT BY ID\n");
+        printf("2. SHOW ALL SORT BY MARK\n");
+        printf("3. Back to Main Menu\n");
+        printf("Enter your choice: ");
+        
+        if (scanf("%d", &choice) != 1) {
+            clearInputBuffer();
+            printf("\nInvalid input! Please enter a number.\n");
+            continue;
+        }
+        clearInputBuffer();
+        
+        switch (choice) {
+            case 1:
+                displayStudentsSorted(1); // Sort by ID
+                break;
+            case 2:
+                displayStudentsSorted(2); // Sort by Mark
+                break;
+            case 3:
+                return; // Back to main menu
+            default:
+                printf("\nInvalid choice! Please try again.\n");
+                continue;
+        }
+        break; // Exit the loop after displaying sorted data
+    }
 }
